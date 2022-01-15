@@ -3,10 +3,10 @@
   "version": "0.1.1",
   "scripts": {
     "start": "dumi dev",
-    "docs:build": "dumi build",
+    "build": "dumi build",
     "docs:deploy": "gh-pages -d docs-dist",
     "compile": "father-build",
-    "build": "npm run docs:build && npm run docs:deploy",
+    "build:deploy": "npm run docs:build && npm run docs:deploy",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
