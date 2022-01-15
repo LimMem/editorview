@@ -26,6 +26,9 @@ const HomePage: FC<HomePageProps> = () => {
         onError={(err) => {
           // console.log('asdfasd', err);
         }}
+        options={{
+          fontSize: '15px',
+        }}
         defaultValue={defaultEditorText}
         className="editor"
       />
