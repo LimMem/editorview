@@ -4,6 +4,6 @@ export default defineConfig({
   title: '代码编辑器',
   exportStatic: {},
   hash: true,
-  publicPath: './'
+  publicPath: './editorview'
   // more config: https://d.umijs.org/config
 });
