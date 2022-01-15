@@ -26,16 +26,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://gitlab.iwhalecloud.com/lcdplowcode/editorview"
+    "url": "https://github.com/LimMem/editorview.git"
   },
   "authors": [
-    "秦传龙 <qin.chuanlong@iwhalecloud.com> (http://gitlab.iwhalecloud.com/chuanlong)"
+    "秦传龙 <1270253618@qq..com> (https://github.com/LimMem)"
   ],
   "publishConfig": {
     "access": "public"
   },
-  "bugs": "http://gitlab.iwhalecloud.com/lcdplowcode/editorview/-/issues",
-  "homepage": "http://gitlab.iwhalecloud.com/lcdplowcode/editorview",
+  "bugs": "https://github.com/LimMem/editorview/issues",
+  "homepage": "https://github.com/LimMem/editorview",
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
