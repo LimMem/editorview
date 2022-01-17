@@ -16,7 +16,7 @@ const HomePage: FC<HomePageProps> = () => {
   const [color, setColor] = useState('#fff');
 
   const onSave = () => {
-    setText(editRef.current?.getValue() || '');
+    setText(editRef.current?.getValue()?.code || '');
   };
 
   return (

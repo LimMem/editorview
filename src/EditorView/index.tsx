@@ -23,7 +23,8 @@ interface EditorViewProps extends EditorProps {
 }
 
 export interface EditorImperativeHandleHandle {
-  getValue: () => string;
+  getValue: () => { error?: Error | unknown; code?: string | null };
+  getBabelValue: () => { error?: Error | unknown; code?: string | null };
 }
 
 const EditorView: FC<
@@ -38,7 +39,6 @@ const EditorView: FC<
     defaultValue,
     className,
     forwardRef,
-    onError,
     ...restProps
   } = props;
   const [val, setVal] = useState(defaultValue);
@@ -50,11 +50,13 @@ const EditorView: FC<
         babelrc: false,
         configFile: false,
       });
-      return result.code;
-    } catch (error: any) {
-      if (onError) {
-        onError(error);
-      }
+      return {
+        code: result.code,
+      };
+    } catch (error: unknown) {
+      return {
+        error,
+      };
     }
   };
 
@@ -62,11 +64,14 @@ const EditorView: FC<
     if (useBabel) {
       return esBabelTransform();
     }
-    return val;
+    return {
+      code: val,
+    };
   };
 
   useImperativeHandle(forwardRef, () => ({
     getValue,
+    getBabelValue: esBabelTransform,
   }));
 
   return (
