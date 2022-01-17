@@ -19,7 +19,12 @@ interface EditorViewProps extends EditorProps {
   /**
    * @description 错误时触发
    */
-  onError?: (err: Error) => void;
+  onError?: (err: unknown) => void;
+
+  /**
+   * @description 提交成功时触发
+   */
+  onSuccess?: ({ code, origin }: { code?: string, origin?: string }) => void;
 }
 
 export interface EditorImperativeHandleHandle {
@@ -39,6 +44,8 @@ const EditorView: FC<
     defaultValue,
     className,
     forwardRef,
+    onSuccess,
+    onError,
     ...restProps
   } = props;
   const [val, setVal] = useState(defaultValue);
@@ -69,9 +76,32 @@ const EditorView: FC<
     };
   };
 
+  const submit = () => {
+    try {
+      const result = transformSync(val, {
+        presets: [require('@babel/preset-env')],
+        babelrc: false,
+        configFile: false,
+      });
+
+      if (onSuccess) {
+        onSuccess({
+          code: result.code,
+          origin: val
+        });
+      }
+
+    } catch (error) {
+      if (onError) {
+        onError(error);
+      }
+    }
+  };
+
   useImperativeHandle(forwardRef, () => ({
     getValue,
     getBabelValue: esBabelTransform,
+    submit
   }));
 
   return (

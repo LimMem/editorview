@@ -17,6 +17,7 @@ const HomePage: FC<HomePageProps> = () => {
 
   const onSave = () => {
     setText(editRef.current?.getValue()?.code || '');
+    editRef.current?.submit();
   };
 
   return (
@@ -31,6 +32,9 @@ const HomePage: FC<HomePageProps> = () => {
         }}
         defaultValue={defaultEditorText}
         className="editor"
+        onSuccess={(dddd) => {
+          console.log('dddd', dddd);
+        }}
       />
       <div>
         <div className="saveButon" onClick={onSave}>
